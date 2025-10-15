@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Crud_student {
@@ -28,6 +29,7 @@ public class Crud_student {
                     System.out.println("3. search via id: ");
                     System.out.println("4. view");
                     System.out.println("5. exit");
+                    System.out.println("6. to enter course: ");
                     System.out.print("Enter: ");
                     int choice = scanner.nextInt();
                     scanner.nextLine();
@@ -51,6 +53,9 @@ public class Crud_student {
                         case 5 -> {
                             System.out.println("exiting....");
                             isRun = false;
+                        }
+                        case 6 -> {
+                            one.course_input(scanner);
                         }
                     }
                 }
@@ -122,11 +127,46 @@ class Student implements Serializable{
     
 
 }
+
+//creeating a class to store course enrollment details!!
+
+class Course{
+    private final String course_name;
+    private final String lecturer_name;
+    private int course_id;
+    Course(String course_name,String lecture_name,int course_id){
+        this.course_name = course_name;
+        this.lecturer_name = lecture_name;
+        this.course_id = course_id;
+    }
+
+    //getters for better encapulsation!!
+    public String getCourse_name(){
+        return course_name;
+    }
+    public String getLecturer_name(){
+        return lecturer_name;
+    }
+
+    public int getCourse_id(){
+        return course_id;
+    }
+    //setter if we need in future!!
+
+    public int setCourse_id(int course_id){
+        return course_id;
+    }
+
+
+}
+
 // class admin to add and update!!
 class Admin{
 
+    HashMap<String, Course> course = new HashMap<>();
     ArrayList<Student> student = new ArrayList<>();
     private static int student_counter = 0;
+    int course_id = 0;
     String path = "projects//details.txt";//getting the path for our file 
 
 
@@ -150,6 +190,28 @@ class Admin{
         }
         
         System.out.println("Student added succesfully!");
+    }
+
+    //to insert values inside course!!
+
+    void course_input(Scanner scanner){
+        System.out.println("Enter how many courses do you want to enter: ");
+        int course_choice = scanner.nextInt();
+        scanner.nextLine();
+
+        for(int i=0;i<course_choice;i++){
+            course_id++;
+            System.out.println("Enter the name of the course: ");
+            String name = scanner.nextLine();
+            System.out.println("Enter the faculty name taking that subject: ");
+            String faculty = scanner.nextLine();
+            System.out.println("Enter the course code: ");
+            String course_code = scanner.nextLine();
+
+            course.put(course_code, new Course(name, faculty, course_id));
+
+
+        }
     }
 
     //To view the list of all students!!
