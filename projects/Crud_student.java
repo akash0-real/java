@@ -55,9 +55,6 @@ public class Crud_student {
                             System.out.println("exiting....");
                             isRun = false;
                         }
-                        case 6 -> {
-                            info2.course_input(scanner);
-                        }
                     }
                 }
                 else if(admin.toLowerCase().equals("student") && pass.toLowerCase().equals("student123")){
