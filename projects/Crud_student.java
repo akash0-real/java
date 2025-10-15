@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ public class Crud_student {
             System.out.println("Admin or student");
             System.out.print("Enter the username: ");
             String admin = scanner.nextLine();
-            System.out.println("Enter the password: ");
+            System.out.print("Enter the password: ");
             String pass = scanner.nextLine();
             boolean isRun = true;
             while(isRun){
@@ -87,7 +88,8 @@ public class Crud_student {
 }
 
 // class student to enter student!!
-class Student{
+class Student implements Serializable{
+    private static final long serialVersionUID = 1;
     private final String name;
     private final int year;
     private final int roll_no;
@@ -130,11 +132,11 @@ class Admin{
 
     //Entering the values inside arraylist using user input!!
     void input(Scanner scanner){
-        student_counter++;
         System.out.print("Enter how many student do you want to enter: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         for(int i=0;i<choice;i++){
+            student_counter++;
             System.out.print("Enter the name of the student: ");
             String name = scanner.nextLine();
             System.out.print("Enter the year of the student: ");
@@ -157,7 +159,7 @@ class Admin{
             return;
         }
         for(Student one:student){
-            System.out.println(one);
+            System.out.println(one.getStudent_id() + " " + one.getName() + " " + one.getYear() + "year " + one.getRoll() + " ");
         }
     }
 
@@ -196,6 +198,7 @@ class Admin{
         for(Student s: student){
             if(s.getStudent_id() == id){
                 System.out.println("The name of the student: " + s.getName() + ". year: " + s.getYear() + ". Roll no " + s.getRoll());
+                run = true;
             }
         }
 
