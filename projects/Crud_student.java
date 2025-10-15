@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Crud_student {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
+            course_info info2 = new course_info();
             System.out.println("This is student portal!!");
             System.out.println("Admin or student");
             System.out.print("Enter the username: ");
@@ -55,7 +56,7 @@ public class Crud_student {
                             isRun = false;
                         }
                         case 6 -> {
-                            one.course_input(scanner);
+                            info2.course_input(scanner);
                         }
                     }
                 }
@@ -133,7 +134,7 @@ class Student implements Serializable{
 class Course{
     private final String course_name;
     private final String lecturer_name;
-    private int course_id;
+    private final int course_id;
     Course(String course_name,String lecture_name,int course_id){
         this.course_name = course_name;
         this.lecturer_name = lecture_name;
@@ -163,11 +164,9 @@ class Course{
 // class admin to add and update!!
 class Admin{
 
-    HashMap<String, Course> course = new HashMap<>();
     ArrayList<Student> student = new ArrayList<>();
     private static int student_counter = 0;
-    int course_id = 0;
-    String path = "projects//details.txt";//getting the path for our file 
+    public String path = "projects//details.txt";//getting the path for our file 
 
 
     //Entering the values inside arraylist using user input!!
@@ -192,27 +191,8 @@ class Admin{
         System.out.println("Student added succesfully!");
     }
 
-    //to insert values inside course!!
-
-    void course_input(Scanner scanner){
-        System.out.println("Enter how many courses do you want to enter: ");
-        int course_choice = scanner.nextInt();
-        scanner.nextLine();
-
-        for(int i=0;i<course_choice;i++){
-            course_id++;
-            System.out.println("Enter the name of the course: ");
-            String name = scanner.nextLine();
-            System.out.println("Enter the faculty name taking that subject: ");
-            String faculty = scanner.nextLine();
-            System.out.println("Enter the course code: ");
-            String course_code = scanner.nextLine();
-
-            course.put(course_code, new Course(name, faculty, course_id));
 
 
-        }
-    }
 
     //To view the list of all students!!
     void view(){
@@ -323,4 +303,58 @@ class StudentInfo extends Admin{
             System.out.println("coudnt find the id!!");
         }
     } 
+}
+
+
+class course_info{
+    HashMap<String, Course> course = new HashMap<>();
+    private static int course_id = 0;
+
+    void course_input(Scanner scanner){
+        System.out.println("Enter how many courses do you want to enter: ");
+        int course_choice = scanner.nextInt();
+        scanner.nextLine();
+
+        for(int i=0;i<course_choice;i++){
+            course_id++;
+            System.out.println("Enter the name of the course: ");
+            String name = scanner.nextLine();
+            System.out.println("Enter the faculty name taking that subject: ");
+            String faculty = scanner.nextLine();
+            System.out.println("Enter the course code: ");
+            String course_code = scanner.nextLine();
+
+            course.put(course_code, new Course(name, faculty, course_id));
+        }
+    }
+
+    void course_view(){
+        if(course.isEmpty()){
+            System.out.println("no courses available!!");
+            return;
+        }
+
+        for(String key: course.keySet()){
+            Course c = course.get(key);
+            System.out.println(c.getCourse_name() + " " + c.getLecturer_name() + " " + c.getCourse_id());
+        }
+
+
+    }
+
+    void course_search(Scanner scanner){
+        System.out.println("Enter the course code: ");
+        String course_choice = scanner.nextLine();
+
+        if(course.isEmpty()){
+            System.out.println("No courses availble");
+            return;
+        }
+
+        if(course.containsKey(course_choice)){
+            Course c = course.get(course_choice);
+            System.out.println(c.getCourse_name() + " " + c.getLecturer_name() + " " + ". Id: " + c.getCourse_id());
+        }
+    }
+
 }
