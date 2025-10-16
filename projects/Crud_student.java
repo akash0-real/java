@@ -107,10 +107,13 @@ public class Crud_student {
                 }
                 else if(admin.toLowerCase().equals("student") && pass.toLowerCase().equals("student123")){
                     StudentInfo info = new StudentInfo();
+                    Student_course one = new Student_course();
                     info.loadFile();
+                    info1.load();
                     System.out.println("1. for view details: ");
                     System.out.println("2. to find Students: ");
-                    System.out.println("3. for exit");
+                    System.out.println("3. to see courses!!");
+                    System.out.println("4. to exit!!");
                     System.out.print("enter: ");
                     int choice = scanner.nextInt();
                     scanner.nextLine();
@@ -123,6 +126,9 @@ public class Crud_student {
                             info.find(scanner);
                         }
                         case 3 -> {
+                            one.view();
+                        }
+                        case 4 -> {
                             System.out.println("exiting...");
                             isRun = false;
                         }
@@ -348,12 +354,12 @@ class StudentInfo extends Admin{
         if(!run){
             System.out.println("coudnt find the id!!");
         }
-    } 
+    }
 }
 
 
 class course_info{
-    HashMap<String, Course> course = new HashMap<>();
+    public HashMap<String, Course> course = new HashMap<>();
     private static int course_id = 0;
     public String path = "projects//course.txt";
 
@@ -450,7 +456,13 @@ class course_info{
         }
         
     }
+}
 
-
-
+class Student_course extends course_info{
+    void view(){
+        for(String one: course.keySet()){
+            Course c = course.get(one);
+            System.out.println(c.getCourse_id() + c.getCourse_name() + c.getLecturer_name());
+        }
+    }
 }
