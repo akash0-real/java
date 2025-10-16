@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Crud_student {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
-            course_info info2 = new course_info();
+            course_info info1 = new course_info();
             System.out.println("This is student portal!!");
             System.out.println("Admin or student");
             System.out.print("Enter the username: ");
@@ -25,35 +25,83 @@ public class Crud_student {
                 if(admin.toLowerCase().equals("admin") && pass.toLowerCase().equals("admin")){
                     Admin one = new Admin();
                     one.loadFile();
-                    System.out.println("1. add");
-                    System.out.println("2. remove");
-                    System.out.println("3. search via id: ");
-                    System.out.println("4. view");
-                    System.out.println("5. exit");
-                    System.out.println("6. to enter course: ");
-                    System.out.print("Enter: ");
+                    info1.load();
+
+                    System.out.print("1 for students/2 for courses: ");
                     int choice = scanner.nextInt();
                     scanner.nextLine();
-
                     switch(choice){
-                        case 1-> {
-                            one.input(scanner);
-                            one.saveFile();
+                        case 1 -> {
+                            System.out.println("1. add");
+                            System.out.println("2. remove");
+                            System.out.println("3. search via id: ");
+                            System.out.println("4. view");
+                            System.out.println("5. exit");
+                            System.out.print("Enter: ");
+                            int enter = scanner.nextInt();
+                            scanner.nextLine();
+                            switch(enter){
+                                case 1 -> {
+                                    one.input(scanner);
+                                    one.saveFile();
+                                }
+                                case 2 ->{
+                                    one.remove(scanner);
+                                    one.saveFile();
+                                }
+                                case 3 -> {
+                                    one.search(scanner);
+                                    one.saveFile();
+                                }
+                                case 4 -> {
+                                    one.view();
+                                }
+                                case 5 -> {
+                                    System.out.println("Bye...");
+                                    isRun = false;
+                                }
+                                default -> {
+                                    System.out.println("Enter a valid value!!");
+                                }
+                            }
                         }
                         case 2 -> {
-                            one.remove(scanner);
-                            one.saveFile();
+                            System.out.println("1. for add!!");
+                            System.out.println("2. for view!!");
+                            System.out.println("3. for search!!");
+                            System.out.println("4. for delete!!");
+                            System.out.println("5. for exit!!");
+
+                            System.out.print("Enter: ");
+                            int input = scanner.nextInt();
+                            scanner.nextLine();
+                            switch(input){
+                                case 1 -> {
+                                    info1.course_input(scanner);
+                                    info1.save();
+                                }
+                                case 2 -> {
+                                    info1.course_view();
+                                }
+                                case 3 -> {
+                                    info1.course_search(scanner);
+                                    info1.save();
+                                }
+                                case 4 -> {
+                                    info1.remove(scanner);
+                                    info1.save();
+                                }
+                                case 5 -> {
+                                    System.out.println("Bye...");
+                                    isRun = false;
+                                }
+                                default -> {
+                                    System.out.println("Enter a valid input!!");
+                                }
+                            }
                         }
-                        case 3 -> {
-                            one.search(scanner);
-                            one.saveFile();
-                        }
-                        case 4 -> {
-                            one.view();
-                        }
-                        case 5 -> {
-                            System.out.println("exiting....");
-                            isRun = false;
+                        default -> {
+                            System.out.println("Enter a valid input!!!");
                         }
                     }
                 }
@@ -307,6 +355,7 @@ class StudentInfo extends Admin{
 class course_info{
     HashMap<String, Course> course = new HashMap<>();
     private static int course_id = 0;
+    public String path = "projects//course.txt";
 
     //Entering the courses inside the hashmap!!
     void course_input(Scanner scanner){
@@ -379,5 +428,29 @@ class course_info{
             System.out.println("Coudnt remove the course!!");
         }
     }
+
+    //To save the details of courses inside map!!
+    void save(){
+        try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(path))){
+            os.writeObject(course);
+            
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //To load the details of courses!!
+    
+    void load(){
+        try(ObjectInputStream ip = new ObjectInputStream(new FileInputStream(path))){
+            course = (HashMap<String,Course>) ip.readObject();
+        }catch(IOException | ClassNotFoundException e ){
+            System.out.println("Something went wrong!!");
+            course = new HashMap<>();
+        }
+        
+    }
+
+
 
 }
