@@ -128,7 +128,8 @@ class Student implements Serializable{
 
 //creeating a class to store course enrollment details!!
 
-class Course{
+class Course implements Serializable{
+    private static final long serialVersionUID = 1;
     private final String course_name;
     private final String lecturer_name;
     private final int course_id;
@@ -307,6 +308,7 @@ class course_info{
     HashMap<String, Course> course = new HashMap<>();
     private static int course_id = 0;
 
+    //Entering the courses inside the hashmap!!
     void course_input(Scanner scanner){
         System.out.println("Enter how many courses do you want to enter: ");
         int course_choice = scanner.nextInt();
@@ -325,6 +327,7 @@ class course_info{
         }
     }
 
+    //To view all the courses inside the hashmap!!
     void course_view(){
         if(course.isEmpty()){
             System.out.println("no courses available!!");
@@ -339,6 +342,7 @@ class course_info{
 
     }
 
+    //To search one course inside hashmap via course code!!
     void course_search(Scanner scanner){
         System.out.println("Enter the course code: ");
         String course_choice = scanner.nextLine();
@@ -351,6 +355,28 @@ class course_info{
         if(course.containsKey(course_choice)){
             Course c = course.get(course_choice);
             System.out.println(c.getCourse_name() + " " + c.getLecturer_name() + " " + ". Id: " + c.getCourse_id());
+        }
+    }
+
+    //To remove course from map via course code!!
+    void remove(Scanner scanner){  
+        System.out.println("Enter the course code: ");
+        String course_name = scanner.nextLine();
+
+        if(course.isEmpty()){
+            System.out.println("No courses are there no remove!!");
+            return;
+        }
+
+        boolean run = false;
+        if(course.containsKey(course_name)){
+            course.remove(course_name);
+            run = true;
+            System.out.println("Removed succesfully!!");
+        }
+
+        if(!run){
+            System.out.println("Coudnt remove the course!!");
         }
     }
 
