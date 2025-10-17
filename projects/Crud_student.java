@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Crud_student {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
-            course_info info1 = new course_info();
+            courseInfo info1 = new courseInfo();
             System.out.println("This is student portal!!");
             System.out.println("Admin or student");
             System.out.print("Enter the username: ");
@@ -77,14 +77,14 @@ public class Crud_student {
                             scanner.nextLine();
                             switch(input){
                                 case 1 -> {
-                                    info1.course_input(scanner);
+                                    info1.courseInput(scanner);
                                     info1.save();
                                 }
                                 case 2 -> {
-                                    info1.course_view();
+                                    info1.courseView();
                                 }
                                 case 3 -> {
-                                    info1.course_search(scanner);
+                                    info1.courseSearch(scanner);
                                     info1.save();
                                 }
                                 case 4 -> {
@@ -107,9 +107,9 @@ public class Crud_student {
                 }
                 else if(admin.toLowerCase().equals("student") && pass.toLowerCase().equals("student123")){
                     StudentInfo info = new StudentInfo();
-                    Student_course one = new Student_course();
                     info.loadFile();
                     info1.load();
+                    
                     System.out.println("1. for view details: ");
                     System.out.println("2. to find Students: ");
                     System.out.println("3. to see courses!!");
@@ -126,7 +126,7 @@ public class Crud_student {
                             info.find(scanner);
                         }
                         case 3 -> {
-                            one.view();
+                            info1.courseView();
                         }
                         case 4 -> {
                             System.out.println("exiting...");
@@ -149,14 +149,14 @@ class Student implements Serializable{
     private static final long serialVersionUID = 1;
     private final String name;
     private final int year;
-    private final int roll_no;
-    private int student_id;
+    private final int rollNo;
+    private int studentId;
     //inisialing values inside constructor!!
-    Student(String name,int year,int roll_no,int student_id){
-        this.student_id = student_id;
+    Student(String name,int year,int rollNo,int studentId){
+        this.studentId = studentId;
         this.name = name;
         this.year = year;
-        this.roll_no = roll_no;   
+        this.rollNo = rollNo;   
     }
     //getter to access the values!!
     public String getName(){
@@ -166,15 +166,15 @@ class Student implements Serializable{
         return year;
     }
     public int getRoll(){
-        return roll_no;
+        return rollNo;
     }
     public int getStudent_id(){
-        return student_id;
+        return studentId;
     }
 
     //setters because student id gonna be automatic!!
-    public void setStudent_id(int student_id){
-        this.student_id = student_id;
+    public void setStudent_id(int studentId){
+        this.studentId = studentId;
     }
     
 
@@ -184,25 +184,25 @@ class Student implements Serializable{
 
 class Course implements Serializable{
     private static final long serialVersionUID = 1;
-    private final String course_name;
-    private final String lecturer_name;
-    private final int course_id;
-    Course(String course_name,String lecture_name,int course_id){
-        this.course_name = course_name;
-        this.lecturer_name = lecture_name;
-        this.course_id = course_id;
+    private final String courseName;
+    private final String lecturerName;
+    private final int courseId;
+    Course(String courseName,String lectureName,int courseId){
+        this.courseName = courseName;
+        this.lecturerName = lectureName;
+        this.courseId = courseId;
     }
 
     //getters for better encapulsation!!
     public String getCourse_name(){
-        return course_name;
+        return courseName;
     }
     public String getLecturer_name(){
-        return lecturer_name;
+        return lecturerName;
     }
 
     public int getCourse_id(){
-        return course_id;
+        return courseId;
     }
     //setter if we need in future!!
 
@@ -358,13 +358,13 @@ class StudentInfo extends Admin{
 }
 
 
-class course_info{
+class courseInfo{
     public HashMap<String, Course> course = new HashMap<>();
     private static int course_id = 0;
     public String path = "projects//course.txt";
 
     //Entering the courses inside the hashmap!!
-    void course_input(Scanner scanner){
+    void courseInput(Scanner scanner){
         System.out.println("Enter how many courses do you want to enter: ");
         int course_choice = scanner.nextInt();
         scanner.nextLine();
@@ -383,7 +383,7 @@ class course_info{
     }
 
     //To view all the courses inside the hashmap!!
-    void course_view(){
+    void courseView(){
         if(course.isEmpty()){
             System.out.println("no courses available!!");
             return;
@@ -398,7 +398,7 @@ class course_info{
     }
 
     //To search one course inside hashmap via course code!!
-    void course_search(Scanner scanner){
+    void courseSearch(Scanner scanner){
         System.out.println("Enter the course code: ");
         String course_choice = scanner.nextLine();
 
@@ -458,11 +458,3 @@ class course_info{
     }
 }
 
-class Student_course extends course_info{
-    void view(){
-        for(String one: course.keySet()){
-            Course c = course.get(one);
-            System.out.println(c.getCourse_id() + c.getCourse_name() + c.getLecturer_name());
-        }
-    }
-}
