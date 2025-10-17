@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Crud_student {
@@ -158,6 +159,21 @@ class Student implements Serializable{
         this.year = year;
         this.rollNo = rollNo;   
     }
+
+    private final HashSet<String> enrollCourses = new HashSet<>();
+
+
+    public HashSet<String> getEnrollCourse(){
+        return enrollCourses;
+    }
+
+    public void addCourses(String courseCode){
+        enrollCourses.add(courseCode);
+    }
+
+    public void removeCourses(String courseCode){
+        enrollCourses.remove(courseCode);
+    }
     //getter to access the values!!
     public String getName(){
         return name;
@@ -191,6 +207,20 @@ class Course implements Serializable{
         this.courseName = courseName;
         this.lecturerName = lectureName;
         this.courseId = courseId;
+    }
+
+    private final HashSet<Integer> enrollStudents = new HashSet<>();
+
+    public HashSet<Integer> getEnrollStudents(){
+        return enrollStudents;
+    }
+
+    public void addStudents(int studentId){
+        enrollStudents.add(studentId);
+    }
+
+    public void remove(int studentId){
+        enrollStudents.remove(studentId);
     }
 
     //getters for better encapulsation!!
@@ -454,6 +484,52 @@ class courseInfo{
             System.out.println("Something went wrong!!");
             course = new HashMap<>();
         }
+        
+    }
+}
+
+
+class Enrollment{
+    void enrollStudent(Scanner scanner, Admin admin,courseInfo courseInfo){
+        System.out.println("Enter a Student id: ");
+        int sid = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Enter course code: ");
+        String cname = scanner.nextLine();
+
+        Student student = null;
+        for(Student one: admin.student){
+            if(one.getStudent_id() == sid){
+                student = one;
+                break;
+            }
+        }
+        if(student == null){
+            System.out.println("Couldnt found the student!!");
+        }
+
+        if(!courseInfo.course.containsKey(cname)){
+            System.out.println("Couldnt find the course!");
+            return;
+        }
+
+        //To get the courses
+
+        Course course = courseInfo.course.get(cname);
+
+        if (student != null) {
+            student.addCourses(cname);
+            System.out.println("Added successfullt!");
+        }
+
+        if(course != null){
+            course.addStudents(sid);
+            System.out.println("Successfully!!");
+        }
+    }
+    
+    void dropCourse(Scanner scanner, Admin admin,courseInfo courseInfo){
         
     }
 }
