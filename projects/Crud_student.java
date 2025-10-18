@@ -248,7 +248,7 @@ class Admin{
 
     ArrayList<Student> student = new ArrayList<>();
     private static int student_counter = 0;
-    public String path = "projects//details.txt";//getting the path for our file 
+    private final String path = "projects//details.txt";//getting the path for our file 
 
 
     //Entering the values inside arraylist using user input!!
@@ -391,7 +391,7 @@ class StudentInfo extends Admin{
 class courseInfo{
     public HashMap<String, Course> course = new HashMap<>();
     private static int course_id = 0;
-    public String path = "projects//course.txt";
+    private final String path = "projects//course.txt";
 
     //Entering the courses inside the hashmap!!
     void courseInput(Scanner scanner){
@@ -490,6 +490,9 @@ class courseInfo{
 
 
 class Enrollment{
+    Admin admin;
+    courseInfo courseInfo;
+    private final String source = "projects//realtion.txt";
     void enrollStudent(Scanner scanner, Admin admin,courseInfo courseInfo){
         System.out.println("Enter a Student id: ");
         int sid = scanner.nextInt();
@@ -529,8 +532,57 @@ class Enrollment{
         }
     }
     
+
+    //To remove the unwanted courses!!
     void dropCourse(Scanner scanner, Admin admin,courseInfo courseInfo){
-        
+        System.out.println("Enter student id: ");
+        int sid = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Enter course code to remove: ");
+        String cid = scanner.nextLine();
+
+         Student s = null;
+        //To find student!!
+
+        for(Student one:admin.student){
+            if(one.getStudent_id() == sid){
+                s= one;
+                break;
+            }
+        }
+
+        if(s == null){
+            System.out.println("Student not found!!");
+            return;
+        }
+        if(!courseInfo.course.containsKey(cid)){
+            System.out.println("Course doesnt exist!!!");
+            return;
+        }
+
+        //to get courses
+
+        Course course = courseInfo.course.get(cid);
+
+        s.removeCourses(cid);
+
+        course.remove(sid);
+
+        System.out.println("removed successfully!!");
+
+
     }
+
+    void load(){
+        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(source))){
+            
+        }catch(IOException e){
+            System.out.println("byee...");
+        }
+    }
+
 }
+
+
 
