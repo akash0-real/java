@@ -490,8 +490,6 @@ class courseInfo{
 
 
 class Enrollment{
-    Admin admin;
-    courseInfo courseInfo;
     private final String source = "projects//realtion.txt";
     void enrollStudent(Scanner scanner, Admin admin,courseInfo courseInfo){
         System.out.println("Enter a Student id: ");
@@ -562,25 +560,70 @@ class Enrollment{
         }
 
         //to get courses
-
         Course course = courseInfo.course.get(cid);
-
         s.removeCourses(cid);
-
         course.remove(sid);
-
         System.out.println("removed successfully!!");
 
+    }
+
+    void search(Scanner scanner,Admin admin,courseInfo info){
+        System.out.println("enter the student id: ");
+        int sid = scanner.nextInt();
+        scanner.nextLine();
+        Student s = null;
+        for(Student one: admin.student){
+            if(one.getStudent_id() == sid){
+                s = one;
+                break;
+            }
+        }
+
+        if(s== null){
+            System.out.println("couldnt find the student!!");
+            return;
+        }
+        HashSet<String> enrolled = s.getEnrollCourse();
+        if(enrolled.isEmpty()){
+            System.out.println("Student not enrolled in any courses!");
+            return;
+        }
+        
+        System.out.println("Enrolled courses for " + s.getName() + ":");
+        for(String courseCode : enrolled){
+            Course c = info.course.get(courseCode);
+            System.out.println(" - " + c.getCourse_name() + " (" + courseCode + ")");
+        }
+
 
     }
 
-    void load(){
-        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(source))){
-            
-        }catch(IOException e){
-            System.out.println("byee...");
+    void view(Admin admin,courseInfo info){
+        void view(Admin admin, courseInfo info){
+    if(admin.student.isEmpty()){
+        System.out.println("No students in system!");
+        return;
+    }
+    
+    System.out.println("=== Student Enrollments ===");
+    for(Student s : admin.student){
+        System.out.println("\nStudent: " + s.getName() + " (ID: " + s.getStudent_id() + ")");
+        
+        HashSet<String> enrolled = s.getEnrollCourse();
+        
+        if(enrolled.isEmpty()){
+            System.out.println("  No courses enrolled");
+        } else {
+            System.out.println("  Enrolled courses:");
+            for(String courseCode : enrolled){
+                Course c = info.course.get(courseCode);
+                System.out.println("    - " + c.getCourse_name() + " (" + courseCode + ")");
+            }
         }
     }
+}
+    }
+
 
 }
 
