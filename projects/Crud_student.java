@@ -14,8 +14,11 @@ import java.util.Scanner;
 public class Crud_student {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
+            Admin one = new Admin();
             Enrollment enroll = new Enrollment();
             courseInfo info1 = new courseInfo();
+            one.loadFile();
+            info1.load();
             System.out.println("This is student portal!!");
             System.out.println("Admin or student");
             System.out.print("Enter the username: ");
@@ -25,9 +28,6 @@ public class Crud_student {
             boolean isRun = true;
             while(isRun){
                 if(admin.toLowerCase().equals("admin") && pass.toLowerCase().equals("admin")){
-                    Admin one = new Admin();
-                    one.loadFile();
-                    info1.load();
 
                     System.out.print("1 for students/2 for courses/3 to enroll students/ 4 to exit!! ");
                     int choice = scanner.nextInt();
@@ -105,7 +105,7 @@ public class Crud_student {
                             System.out.println("2. to remove!");
                             System.out.println("3. to view");
                             System.out.println("4. to search!");
-                            System.out.println("5. to exit!");
+                            System.out.println("5. to return!");
                             System.out.print("Enter: ");
                             int input = scanner.nextInt();
                             scanner.nextLine();
@@ -290,7 +290,7 @@ class Course implements Serializable{
 class Admin{
 
     ArrayList<Student> student = new ArrayList<>();
-    private static int student_counter;
+    private int student_counter;
     private final String path = "projects//details.txt";//getting the path for our file 
 
 
