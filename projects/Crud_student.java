@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class Crud_student {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
+            Enrollment enroll = new Enrollment();
             courseInfo info1 = new courseInfo();
             System.out.println("This is student portal!!");
             System.out.println("Admin or student");
@@ -28,7 +29,7 @@ public class Crud_student {
                     one.loadFile();
                     info1.load();
 
-                    System.out.print("1 for students/2 for courses: ");
+                    System.out.print("1 for students/2 for courses/3 to enroll students/ 4 to exit!! ");
                     int choice = scanner.nextInt();
                     scanner.nextLine();
                     switch(choice){
@@ -37,7 +38,7 @@ public class Crud_student {
                             System.out.println("2. remove");
                             System.out.println("3. search via id: ");
                             System.out.println("4. view");
-                            System.out.println("5. exit");
+                            System.out.println("5. to go back!!");
                             System.out.print("Enter: ");
                             int enter = scanner.nextInt();
                             scanner.nextLine();
@@ -58,8 +59,7 @@ public class Crud_student {
                                     one.view();
                                 }
                                 case 5 -> {
-                                    System.out.println("Bye...");
-                                    isRun = false;
+                                    return;
                                 }
                                 default -> {
                                     System.out.println("Enter a valid value!!");
@@ -71,7 +71,7 @@ public class Crud_student {
                             System.out.println("2. for view!!");
                             System.out.println("3. for search!!");
                             System.out.println("4. for delete!!");
-                            System.out.println("5. for exit!!");
+                            System.out.println("5. for return!!");
 
                             System.out.print("Enter: ");
                             int input = scanner.nextInt();
@@ -93,13 +93,51 @@ public class Crud_student {
                                     info1.save();
                                 }
                                 case 5 -> {
-                                    System.out.println("Bye...");
-                                    isRun = false;
+                                    return;
                                 }
                                 default -> {
                                     System.out.println("Enter a valid input!!");
                                 }
                             }
+                        }
+                        case 3 -> {
+                            System.out.println("1 for add.");
+                            System.out.println("2. to remove!");
+                            System.out.println("3. to view");
+                            System.out.println("4. to search!");
+                            System.out.println("5. to exit!");
+                            System.out.print("Enter: ");
+                            int input = scanner.nextInt();
+                            scanner.nextLine();
+                            switch(input){
+                                case 1 -> {
+                                    enroll.enrollStudent(scanner, one, info1);
+                                    one.saveFile();
+                                    info1.save();
+                                }
+                                case 2 -> {
+                                    enroll.dropCourse(scanner, one, info1);
+                                    one.saveFile();
+                                    info1.save();
+                                }
+                                case 3 -> {
+                                    enroll.view(one, info1);
+                                }
+                                case 4 -> {
+                                    enroll.search(scanner, one, info1);
+                                }
+                                case 5 -> {
+                                    return;
+                                }
+                                default -> {
+                                    System.out.println("Enter valid input!!");
+                                }
+                                
+                            }
+                        }
+                        case 4 -> {
+                            System.out.println("byee..");
+                            isRun = false;
                         }
                         default -> {
                             System.out.println("Enter a valid input!!!");
@@ -114,7 +152,7 @@ public class Crud_student {
                     System.out.println("1. for view details: ");
                     System.out.println("2. to find Students: ");
                     System.out.println("3. to see courses!!");
-                    System.out.println("4. to exit!!");
+                    System.out.println("4. to see your enrollments!!");
                     System.out.print("enter: ");
                     int choice = scanner.nextInt();
                     scanner.nextLine();
@@ -130,8 +168,13 @@ public class Crud_student {
                             info1.courseView();
                         }
                         case 4 -> {
-                            System.out.println("exiting...");
+                            enroll.search(scanner, info, info1);
+                        }
+                        case 5 -> {
                             isRun = false;
+                        }
+                        default -> {
+                            System.out.println("Enter a valid input");
                         }
                     }
                 }
@@ -247,7 +290,7 @@ class Course implements Serializable{
 class Admin{
 
     ArrayList<Student> student = new ArrayList<>();
-    private static int student_counter = 0;
+    private static int student_counter;
     private final String path = "projects//details.txt";//getting the path for our file 
 
 
@@ -490,7 +533,6 @@ class courseInfo{
 
 
 class Enrollment{
-    private final String source = "projects//realtion.txt";
     void enrollStudent(Scanner scanner, Admin admin,courseInfo courseInfo){
         System.out.println("Enter a Student id: ");
         int sid = scanner.nextInt();
@@ -599,33 +641,29 @@ class Enrollment{
     }
 
     void view(Admin admin,courseInfo info){
-        void view(Admin admin, courseInfo info){
-    if(admin.student.isEmpty()){
-        System.out.println("No students in system!");
-        return;
-    }
-    
-    System.out.println("=== Student Enrollments ===");
-    for(Student s : admin.student){
-        System.out.println("\nStudent: " + s.getName() + " (ID: " + s.getStudent_id() + ")");
+        if(admin.student.isEmpty()){
+            System.out.println("No students in system!");
+            return;
+        }
         
-        HashSet<String> enrolled = s.getEnrollCourse();
-        
-        if(enrolled.isEmpty()){
-            System.out.println("  No courses enrolled");
-        } else {
-            System.out.println("  Enrolled courses:");
-            for(String courseCode : enrolled){
-                Course c = info.course.get(courseCode);
-                System.out.println("    - " + c.getCourse_name() + " (" + courseCode + ")");
+        for(Student s : admin.student){
+            System.out.println("\nStudent: " + s.getName() + " (ID: " + s.getStudent_id() + ")");
+            
+            HashSet<String> enrolled = s.getEnrollCourse();
+            
+            if(enrolled.isEmpty()){
+                System.out.println("  No courses enrolled");
+            } else {
+                System.out.println("  Enrolled courses:");
+                for(String courseCode : enrolled){
+                    Course c = info.course.get(courseCode);
+                    System.out.println("    - " + c.getCourse_name() + " (" + courseCode + ")");
+                }
             }
         }
-    }
 }
-    }
-
-
 }
+
 
 
 
