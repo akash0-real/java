@@ -361,9 +361,17 @@ class Admin{
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        student.stream().filter( n -> n.getStudent_id() == id)
-                        .findFirst()
-                        .ifPresent(s -> System.out.println(s.getName()));
+        boolean run = false;
+        for(Student s: student){
+            if(s.getStudent_id() == id){
+                System.out.println("The name of the student: " + s.getName() + ". year: " + s.getYear() + ". Roll no " + s.getRoll());
+                run = true;
+            }
+        }
+
+        if(!run){
+            System.out.println("couldnt find the Id");
+        }
     }
 
     //To save details in file!!
@@ -394,17 +402,31 @@ class StudentInfo extends Admin{
         System.out.println("Enter your Id to see details: ");
         int id = scanner.nextInt();
         scanner.nextLine();
-        student.stream().filter(n -> n.getStudent_id() == id)
-                .findFirst()
-                .ifPresent(n -> System.out.println(n.getName()));
+        boolean run = false;
+        for(Student s: student){
+            if(s.getStudent_id()==id){
+                System.out.println("name: " + s.getName() + ". year: " + s.getYear() + ". roll_no: " + s.getRoll());
+                run = true;
+            }
+        }
+        if(!run){
+            System.out.println("couldnt find the ID!!");
+        }
     }
     void find(Scanner scanner){
         System.out.println("Enter studentId to find students: ");
         int id = scanner.nextInt();
         scanner.nextLine();
-        student.stream()
-            .filter(n -> n.getStudent_id() == id)
-            .findFirst().ifPresent(n -> System.out.println(n.getName() + " " + n.getYear()));
+        boolean run = false;
+        for(Student s: student){
+            if(s.getStudent_id()==id){
+                System.out.println("name: " + s.getName() + ". year: " + s.getYear() + ". roll_no: " + s.getRoll());
+                run = true;
+            }
+        }
+        if(!run){
+            System.out.println("coudnt find the id!!");
+        }
     }
 }
 
