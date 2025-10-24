@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-public class Crud_student {
+public class CrudStudent {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
             Admin one = new Admin();
