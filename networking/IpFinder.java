@@ -8,9 +8,9 @@ public class IpFInder {
         try(Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter a website to see IP: ");
             String ip = scanner.nextLine();
-            InetAddress address =  InetAddress.getByName(ip);
+            InetAddress address =  InetAddress.getByName(ip);//getting the ip address by name!!
             System.out.println("ip: " + address);
-        }catch (UnknownHostException e){
+        }catch (UnknownHostException e){// to throw the error 
             System.out.println("Host doesnt exist!!");
         }catch (InputMismatchException e){
             System.out.println("Wrong input!!");
