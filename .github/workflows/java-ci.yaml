@@ -1,0 +1,34 @@
+name: Java CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Find and compile all Java files
+        run: |
+          echo "Compiling all Java files..."
+          find . -name "*.java" > sources.txt
+          javac @sources.txt
+
+      - name: Run a sample main class (optional)
+        run: |
+          echo "Running sample program..."
+          arrays.one_d.Find
+          # example: java arrays.Supermarket
+          echo "No main program selected"
