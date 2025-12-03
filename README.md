@@ -80,7 +80,7 @@ RandomAccessFile
 
 
 ```mermaid
-%%{init: {'theme': 'neutral'}}%%
+%%{init: {'theme': 'dark'}}%%
 mindmap
   root((Java Journey))
     Document Progress
