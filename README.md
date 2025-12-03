@@ -78,30 +78,40 @@ RandomAccessFile
 
 <div align="center">
 
-```mermaid
 mindmap
-  root((Java Journey))
-    Document Progress
-      Timeline tracking
-      Commit history
-      Version control
-    Build Portfolio
-      Showcase skills
-      Real projects
-      Clean code
-    Enable Revision
-      Quick reference
-      Code patterns
-      Solutions
-    Share Knowledge
-      Help others
-      Clear examples
-      Documentation
-    Practice Consistency
-      Regular coding
-      Continuous improvement
-      Daily commits
-```
+root((Java Journey))
+Document Progress
+Timeline tracking
+Commit history
+Version control
+Build Portfolio
+Showcase skills
+Real projects
+Clean code
+Enable Revision
+Quick reference
+Code patterns
+Solutions
+Share Knowledge
+Help others
+Clear examples
+Documentation
+Practice Consistency
+Regular coding
+Continuous improvement
+Daily commits
+
+%% COLORS
+classDef rootNode fill:#A8E6CF,stroke:#1B8A6B,color:#1B8A6B,font-weight:bold;
+classDef branch fill:#DAF7A6,stroke:#1B8A6B,color:#1B8A6B;
+
+class root rootNode;
+class Document Progress branch;
+class Build Portfolio branch;
+class Enable Revision branch;
+class Share Knowledge branch;
+class Practice Consistency branch;
+
 
 </div>
 
