@@ -438,7 +438,7 @@ gantt
     dateFormat  YYYY-MM
     section Completed
     Core Java Fundamentals    :done, 2025-06, 2025-09
-    OOP & Collections        :done, 2024-05, 2024-11
+    OOP & Collections        :done, 2025-05, 2025-11
     section Current
     Advanced Topics          :active, 2025-11, 2026-01
     JUnit & Testing         :active, 2025-12, 2026-01
