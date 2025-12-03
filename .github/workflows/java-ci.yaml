@@ -25,10 +25,3 @@ jobs:
           echo "Compiling all Java files..."
           find . -name "*.java" > sources.txt
           javac @sources.txt
-
-      - name: Run a sample main class (optional)
-        run: |
-          echo "Running sample program..."
-          java arrays.one_d.Find
-          # example: java arrays.Supermarket
-          echo "No main program selected"
