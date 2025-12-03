@@ -80,6 +80,7 @@ RandomAccessFile
 
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 mindmap
   root((Java Journey))
     Document Progress
@@ -545,7 +546,7 @@ Feel free to use this code for learning, teaching, or building your own projects
 
 **Made with ☕ and 💻 by [Akash Bisht](https://github.com/akash0-real)**
 
-*Last Updated: December 2024*
+*Last Updated: December 2025*
 
 <br>
 
