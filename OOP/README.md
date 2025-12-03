@@ -118,6 +118,7 @@ java Main
 Follow this curated sequence for optimal learning:
 
 ```mermaid
+graph LR
     A[Methods] --> B[Getters & Setters]
     B --> C[Constructor]
     C --> D[Packages]
@@ -228,7 +229,7 @@ Feel free to open an issue or submit a pull request!
 
 **Questions? Suggestions? Just want to say hi?**
 
-[![GitHub](https://img.shields.io/badge/GitHub-akasho--real-181717?style=for-the-badge&logo=github)](https://github.com/akasho-real)
+[![GitHub](https://img.shields.io/badge/GitHub-akasho--real-181717?style=for-the-badge&logo=github)](https://github.com/akash0-real)
 
 </div>
 
