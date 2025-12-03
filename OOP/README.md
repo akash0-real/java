@@ -247,6 +247,6 @@ This project is open source and available for educational purposes. Feel free to
 
 **Made with ☕ and 💻 by [akasho-real](https://github.com/akasho-real)**
 
-*Last Updated: December 2024*
+*Last Updated: December 2025*
 
 </div>
