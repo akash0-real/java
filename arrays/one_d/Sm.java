@@ -1,6 +1,6 @@
 package arrays.one_d;
 import java.util.Scanner;
-public class Sum{
+public class Sm{
     public static void main(String[] args) {
        try( Scanner scanner = new Scanner(System.in)){
         Odd one = new Odd(scanner);
@@ -9,18 +9,18 @@ public class Sum{
     }
 }
 
-class Arr{
+class Choice{
     int[] arr1;
     int choice;
-    Arr(Scanner scanner){
+    Choice(Scanner scanner){
         System.out.print("enter the no. elements you want in an array: ");
         this.choice = scanner.nextInt();
         arr1 = new int[choice];
     }
 }
 
-class Input extends Arr{
-    Input(Scanner scanner){
+class input extends one {
+    input(Scanner scanner){
         super(scanner); 
         for(int i=0;i<choice;i++){
             System.out.print("enter the values in the array: ");
@@ -31,7 +31,7 @@ class Input extends Arr{
     
 }
 
-class Even extends Input{
+class Even extends fi {
     int sum = 0;
     Even(Scanner scanner) {
         super(scanner);

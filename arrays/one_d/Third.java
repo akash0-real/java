@@ -20,7 +20,7 @@ class Arr{
     }
 }
 
-class Input extends Arr{
+class Input extends one {
     Input(Scanner scanner){
         super(scanner);
         for(int i=0;i<choice;i++){
@@ -29,7 +29,7 @@ class Input extends Arr{
         }
     }
 }
-class Sum extends Input{
+class Sum extends fi {
     int all = 0;
     Sum(Scanner scanner){
         super(scanner);

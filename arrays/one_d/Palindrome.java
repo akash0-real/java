@@ -7,28 +7,29 @@ public class Palindrome {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
         Check one = new Check(scanner);
-        one.va(scanner);
+        Input1 two = new Input1(scanner);
+        two.va(scanner);
         one.Pal();
     }
         
     }
 }
 
-class Arr {
+class one {
 
     int choice;
     int[] arr1;
 
-    Arr(Scanner scanner) {
+    one(Scanner scanner) {
         System.out.print("Enter the size of the array: ");
         this.choice = scanner.nextInt();
         this.arr1 = new int[choice];
     }
 }
 
-class Input extends Arr {
+class Input1 extends one {
 
-    Input(Scanner scanner) {
+    Input1(Scanner scanner) {
         super(scanner);
     }
 
@@ -40,7 +41,7 @@ class Input extends Arr {
     }
 }
 
-class Check extends Input {
+class Check extends fi {
 
     boolean run = true;
 
