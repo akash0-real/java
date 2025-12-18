@@ -14,179 +14,152 @@ import java.util.Scanner;
 public class CrudStudent {
     public static void main(String[] args) {
         try(Scanner scanner = new Scanner(System.in)){
-            Admin one = new Admin();
+            Admin admin = new Admin();
             Enrollment enroll = new Enrollment();
-            courseInfo info1 = new courseInfo();
-            one.loadFile();
-            info1.load();
-            System.out.println("This is student portal!!");
-            System.out.println("Admin or student");
-            System.out.print("Enter the username: ");
-            String admin = scanner.nextLine();
-            System.out.print("Enter the password: ");
-            String pass = scanner.nextLine();
-            boolean isRun = true;
-            while(isRun){
-                if(admin.toLowerCase().equals("admin") && pass.toLowerCase().equals("admin")){
+            courseInfo courseInfo = new courseInfo();
+            admin.loadFile();
+            courseInfo.load();
+            login(scanner, admin, enroll, courseInfo);
 
-                    System.out.print("1 for students/2 for courses/3 to enroll students/ 4 to exit!! ");
-                    int choice = scanner.nextInt();
-                    scanner.nextLine();
-                    switch(choice){
-                        case 1 -> {
-                            System.out.println("1. add");
-                            System.out.println("2. remove");
-                            System.out.println("3. search via id: ");
-                            System.out.println("4. view");
-                            System.out.println("5. to go back!!");
-                            System.out.print("Enter: ");
-                            int enter = scanner.nextInt();
-                            scanner.nextLine();
-                            switch(enter){
-                                case 1 -> {
-                                    one.input(scanner);
-                                    one.saveFile();
-                                }
-                                case 2 ->{
-                                    one.remove(scanner);
-                                    one.saveFile();
-                                }
-                                case 3 -> {
-                                    one.search(scanner);
-                                    one.saveFile();
-                                }
-                                case 4 -> {
-                                    one.view();
-                                }
-                                case 5 -> {
-                                    return;
-                                }
-                                default -> {
-                                    System.out.println("Enter a valid value!!");
-                                }
-                            }
-                        }
-                        case 2 -> {
-                            System.out.println("1. for add!!");
-                            System.out.println("2. for view!!");
-                            System.out.println("3. for search!!");
-                            System.out.println("4. for delete!!");
-                            System.out.println("5. for return!!");
-
-                            System.out.print("Enter: ");
-                            int input = scanner.nextInt();
-                            scanner.nextLine();
-                            switch(input){
-                                case 1 -> {
-                                    info1.courseInput(scanner);
-                                    info1.save();
-                                }
-                                case 2 -> {
-                                    info1.courseView();
-                                }
-                                case 3 -> {
-                                    info1.courseSearch(scanner);
-                                    info1.save();
-                                }
-                                case 4 -> {
-                                    info1.remove(scanner);
-                                    info1.save();
-                                }
-                                case 5 -> {
-                                    return;
-                                }
-                                default -> {
-                                    System.out.println("Enter a valid input!!");
-                                }
-                            }
-                        }
-                        case 3 -> {
-                            System.out.println("1 for add.");
-                            System.out.println("2. to remove!");
-                            System.out.println("3. to view");
-                            System.out.println("4. to search!");
-                            System.out.println("5. to return!");
-                            System.out.print("Enter: ");
-                            int input = scanner.nextInt();
-                            scanner.nextLine();
-                            switch(input){
-                                case 1 -> {
-                                    enroll.enrollStudent(scanner, one, info1);
-                                    one.saveFile();
-                                    info1.save();
-                                }
-                                case 2 -> {
-                                    enroll.dropCourse(scanner, one, info1);
-                                    one.saveFile();
-                                    info1.save();
-                                }
-                                case 3 -> {
-                                    enroll.view(one, info1);
-                                }
-                                case 4 -> {
-                                    enroll.search(scanner, one, info1);
-                                }
-                                case 5 -> {
-                                    return;
-                                }
-                                default -> {
-                                    System.out.println("Enter valid input!!");
-                                }
-                                
-                            }
-                        }
-                        case 4 -> {
-                            System.out.println("byee..");
-                            isRun = false;
-                        }
-                        default -> {
-                            System.out.println("Enter a valid input!!!");
-                        }
-                    }
-                }
-                else if(admin.toLowerCase().equals("student") && pass.toLowerCase().equals("student123")){
-                    StudentInfo info = new StudentInfo();
-                    info.loadFile();
-                    info1.load();
-                    
-                    System.out.println("1. for view details: ");
-                    System.out.println("2. to find Students: ");
-                    System.out.println("3. to see courses!!");
-                    System.out.println("4. to see your enrollments!!");
-                    System.out.print("enter: ");
-                    int choice = scanner.nextInt();
-                    scanner.nextLine();
-
-                    switch(choice){
-                        case 1 -> {
-                            info.search(scanner);
-                        }
-                        case 2 -> {
-                            info.find(scanner);
-                        }
-                        case 3 -> {
-                            info1.courseView();
-                        }
-                        case 4 -> {
-                            enroll.search(scanner, info, info1);
-                        }
-                        case 5 -> {
-                            isRun = false;
-                        }
-                        default -> {
-                            System.out.println("Enter a valid input");
-                        }
-                    }
-                }
-
-
-
-            }
         }catch(InputMismatchException e ){
             System.out.println("Enter valid input!!");
         }
     }
+    public static void login(Scanner scanner,Admin admin,Enrollment enroll,courseInfo info){
+        System.out.println("this is a student portal!!");
+        System.out.println("Admin or student?");
+
+        System.out.print("Enter the username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter the password: ");
+        String password = scanner.nextLine();
+        if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+            handleAdmin(scanner, admin, enroll,info);
+        } else if (username.equalsIgnoreCase("student") && password.equalsIgnoreCase("student123")) {
+            handleStudent(scanner, enroll, info);
+
+        } else {
+            System.out.println("Invalid credentials!");
+        }
+
+    }
+    private static void handleAdmin(Scanner scanner, Admin adminObj, Enrollment enroll, courseInfo courseInfo) {
+        boolean isRun = true;
+
+        while (isRun) {
+            System.out.println("\n1. Students");
+            System.out.println("2. Courses");
+            System.out.println("3. Enrollments");
+            System.out.println("4. Exit");
+            System.out.print("Enter choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1 -> adminStudentMenu(scanner, adminObj);
+                case 2 -> adminCourseMenu(scanner, courseInfo);
+                case 3 -> adminEnrollmentMenu(scanner, enroll, adminObj, courseInfo);
+                case 4 -> {
+                    System.out.println("Bye!");
+                    isRun = false;
+                }
+                default -> System.out.println("Invalid option!");
+            }
+        }
+    }
+    private static void adminStudentMenu(Scanner scanner, Admin adminObj) {
+
+        System.out.println("\n1. Add student");
+        System.out.println("2. Remove student");
+        System.out.println("3. Search student");
+        System.out.println("4. View all");
+        System.out.println("5. Back");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1 -> { adminObj.input(scanner); adminObj.saveFile(); }
+            case 2 -> { adminObj.remove(scanner); adminObj.saveFile(); }
+            case 3 -> adminObj.search(scanner);
+            case 4 -> adminObj.view();
+            case 5 -> {
+                return;
+            }
+            default -> System.out.println("Invalid input!");
+        }
+    }
+    private static void adminCourseMenu(Scanner scanner, courseInfo courseInfo) {
+
+        System.out.println("\n1. Add course");
+        System.out.println("2. View courses");
+        System.out.println("3. Search course");
+        System.out.println("4. Delete course");
+        System.out.println("5. Back");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1 -> { courseInfo.courseInput(scanner); courseInfo.save(); }
+            case 2 -> courseInfo.courseView();
+            case 3 -> courseInfo.courseSearch(scanner);
+            case 4 -> { courseInfo.remove(scanner); courseInfo.save(); }
+            case 5 -> {
+                return;
+            }
+            default -> System.out.println("Invalid input!");
+        }
+    }
+    private static void adminEnrollmentMenu(Scanner scanner, Enrollment enroll, Admin adminObj, courseInfo courseInfo) {
+
+        System.out.println("\n1. Enroll student");
+        System.out.println("2. Drop course");
+        System.out.println("3. View enrollments");
+        System.out.println("4. Search enrollment");
+        System.out.println("5. Back");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1 -> enroll.enrollStudent(scanner, adminObj, courseInfo);
+            case 2 -> enroll.dropCourse(scanner, adminObj, courseInfo);
+            case 3 -> enroll.view(adminObj, courseInfo);
+            case 4 -> enroll.search(scanner, adminObj, courseInfo);
+            case 5 -> { return; }
+            default -> System.out.println("Invalid input!");
+        }
+    }
+    private static void handleStudent(Scanner scanner, Enrollment enroll, courseInfo courseInfo) {
+
+        StudentInfo studentInfo = new StudentInfo();
+        studentInfo.loadFile();
+        courseInfo.load();
+
+        System.out.println("\n1. View details");
+        System.out.println("2. Find student");
+        System.out.println("3. View courses");
+        System.out.println("4. View enrollments");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1 -> studentInfo.search(scanner);
+            case 2 -> studentInfo.find(scanner);
+            case 3 -> courseInfo.courseView();
+            case 4 -> enroll.search(scanner, studentInfo, courseInfo);
+            default -> System.out.println("Invalid input!");
+        }
+    }
+
+
+
+
 }
+
 
 // class student to enter student!!
 class Student implements Serializable{
