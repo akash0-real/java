@@ -9,7 +9,7 @@
 
 **A comprehensive documentation of my journey from Java fundamentals to advanced concepts**
 
-*Every line of code represents a step forward in mastering one of the most powerful programming languages*
+_Every line of code represents a step forward in mastering one of the most powerful programming languages_
 
 ---
 
@@ -28,9 +28,10 @@
 <td width="33%" align="center">
 
 ### 🎯 Core Concepts
+
 **Building Strong Foundations**
 
-![OOP](https://img.shields.io/badge/OOP-Complete-success?style=flat-square)
+![OOPS](https://img.shields.io/badge/OOP-Complete-success?style=flat-square)
 ![Arrays](https://img.shields.io/badge/Arrays-Complete-success?style=flat-square)
 ![Strings](https://img.shields.io/badge/Strings-Complete-success?style=flat-square)
 
@@ -43,6 +44,7 @@ Loops & Conditionals
 <td width="33%" align="center">
 
 ### 📊 Data Structures
+
 **Efficient Data Management**
 
 ![Collections](https://img.shields.io/badge/Collections-Complete-success?style=flat-square)
@@ -57,6 +59,7 @@ Filter • Map • Reduce
 <td width="33%" align="center">
 
 ### 🚀 Advanced Topics
+
 **Mastering Modern Java**
 
 ![Lambda](https://img.shields.io/badge/Lambda-Complete-success?style=flat-square)
@@ -77,7 +80,6 @@ RandomAccessFile
 ## 🎯 Repository Goals
 
 <div align="center">
-
 
 ```mermaid
 %%{init: {'theme': 'neutral'}}%%
@@ -107,13 +109,13 @@ mindmap
 
 </div>
 
-| Goal | Description | Status |
-|:----:|-------------|:------:|
-| 📈 **Document Progress** | Complete timeline of learning journey | ✅ Active |
-| 💼 **Build Portfolio** | Showcase practical coding skills | ✅ Growing |
-| 📝 **Enable Revision** | Quick reference for concepts & patterns | ✅ Ongoing |
-| 🤝 **Share Knowledge** | Help others with clear examples | ✅ Public |
-| 🔄 **Practice Consistency** | Regular coding & continuous improvement | ✅ Daily |
+|            Goal             | Description                             |   Status   |
+| :-------------------------: | --------------------------------------- | :--------: |
+|  📈 **Document Progress**   | Complete timeline of learning journey   | ✅ Active  |
+|   💼 **Build Portfolio**    | Showcase practical coding skills        | ✅ Growing |
+|   📝 **Enable Revision**    | Quick reference for concepts & patterns | ✅ Ongoing |
+|   🤝 **Share Knowledge**    | Help others with clear examples         | ✅ Public  |
+| 🔄 **Practice Consistency** | Regular coding & continuous improvement |  ✅ Daily  |
 
 ---
 
@@ -130,6 +132,7 @@ mindmap
 <td width="50%">
 
 #### 📐 **Software Engineering**
+
 - ✅ Writing clean, maintainable code
 - ✅ Object-oriented design principles
 - ✅ Following Java best practices
@@ -137,6 +140,7 @@ mindmap
 - ✅ Code documentation standards
 
 #### 🔧 **Technical Skills**
+
 - ✅ Data structures internals
 - ✅ Algorithm implementation
 - ✅ Collections Framework mastery
@@ -147,6 +151,7 @@ mindmap
 <td width="50%">
 
 #### 🧠 **Problem Solving**
+
 - ✅ Breaking down complex problems
 - ✅ Debugging complex issues
 - ✅ Code optimization techniques
@@ -154,6 +159,7 @@ mindmap
 - ✅ Memory management
 
 #### 🌟 **Modern Java**
+
 - ✅ Functional programming paradigms
 - ✅ Lambda expressions & streams
 - ✅ Modern Java features (Java 21)
@@ -179,9 +185,11 @@ mindmap
 <td width="50%">
 
 ### 🛒 Supermarket Inventory System
+
 **Technologies:** `ArrayList` `HashMap` `CRUD Operations`
 
 Two complete implementations showcasing different data structures:
+
 - ArrayList-based product management
 - HashMap-based inventory tracking
 - Full CRUD operations
@@ -192,9 +200,11 @@ Two complete implementations showcasing different data structures:
 ---
 
 ### 👥 Friend Suggestion Engine
+
 **Technologies:** `HashSet` `Algorithms` `Social Networks`
 
 Intelligent recommendation system that:
+
 - Suggests mutual connections
 - Finds common friends
 - Optimizes search with HashSet
@@ -205,9 +215,11 @@ Intelligent recommendation system that:
 ---
 
 ### 🎵 Audio Player
+
 **Technologies:** `Event Handlers` `CLI` `Functional Programming`
 
 Simple yet functional CLI audio player featuring:
+
 - Event-driven architecture
 - Audio playback controls
 - Clean command-line interface
@@ -219,9 +231,11 @@ Simple yet functional CLI audio player featuring:
 <td width="50%">
 
 ### 🎓 CRUD Student System
+
 **Technologies:** `HashMap` `HashSet` `ArrayList` `Integrated Collections`
 
 Comprehensive student management system:
+
 - Complete CRUD operations
 - Multiple collection types
 - Data validation
@@ -232,9 +246,11 @@ Comprehensive student management system:
 ---
 
 ### 🍽️ Restaurant Manager
+
 **Technologies:** `Enums` `Threads` `Concurrency`
 
 Advanced restaurant management system:
+
 - Enum-based menu system
 - Multi-threaded order processing
 - Concurrent task handling
@@ -245,9 +261,11 @@ Advanced restaurant management system:
 ---
 
 ### 📚 Library System
+
 **Technologies:** `OOP` `File I/O` `Data Persistence`
 
 Professional library management:
+
 - Book inventory tracking
 - Member management
 - Borrow/return system
@@ -280,14 +298,14 @@ Professional library management:
 
 </div>
 
-| Category | Tools & Technologies |
-|----------|---------------------|
-| **Language** | Java 21 (with modern features like Records, Pattern Matching) |
-| **IDEs** | IntelliJ IDEA Ultimate, VS Code with Java Extension Pack |
-| **Build Tools** | Maven for dependency management and project structure |
-| **Version Control** | Git & GitHub for source control and collaboration |
-| **Testing** | JUnit 5 (in progress) |
-| **Documentation** | Javadoc, Markdown |
+| Category            | Tools & Technologies                                          |
+| ------------------- | ------------------------------------------------------------- |
+| **Language**        | Java 21 (with modern features like Records, Pattern Matching) |
+| **IDEs**            | IntelliJ IDEA Ultimate, VS Code with Java Extension Pack      |
+| **Build Tools**     | Maven for dependency management and project structure         |
+| **Version Control** | Git & GitHub for source control and collaboration             |
+| **Testing**         | JUnit 5 (in progress)                                         |
+| **Documentation**   | Javadoc, Markdown                                             |
 
 ---
 
@@ -395,16 +413,16 @@ java/
 ### 🚧 In Progress
 
 - [ ] **JUnit 5 Testing**  
-  Comprehensive unit testing for all projects
+       Comprehensive unit testing for all projects
 
 - [ ] **Design Patterns**  
-  Singleton, Factory, Observer, Strategy, Builder
+       Singleton, Factory, Observer, Strategy, Builder
 
 - [ ] **Data Structures & Algorithms**  
-  Complete DSA implementations from scratch
+       Complete DSA implementations from scratch
 
 - [ ] **Functional interfaces**  
-  Complete implementation on functional database 
+       Complete implementation on functional database
 
 </td>
 <td width="50%">
@@ -412,19 +430,19 @@ java/
 ### 🔜 Coming Soon
 
 - [ ] **JDBC Integration**  
-  Database connectivity and operations
+       Database connectivity and operations
 
 - [ ] **JavaFX Applications**  
-  GUI development and desktop apps
+       GUI development and desktop apps
 
 - [ ] **Spring Framework**  
-  Introduction to Spring Boot & Spring Core
+       Introduction to Spring Boot & Spring Core
 
 - [ ] **RESTful APIs**  
-  Building web services with Java
+       Building web services with Java
 
 - [ ] **Microservices**  
-  Distributed systems architecture
+       Distributed systems architecture
 
 </td>
 </tr>
@@ -461,13 +479,13 @@ While this is a personal learning repository, I'd love to hear from you!
 
 </div>
 
-| How to Contribute | Description |
-|-------------------|-------------|
-| 🐛 **Report Bugs** | Found an issue? Open an issue on GitHub |
-| 💡 **Suggest Topics** | Have ideas for new projects or concepts? Let me know! |
-| 📖 **Share Resources** | Know great Java learning materials? Share them! |
-| ⭐ **Star the Repo** | If you find this helpful, give it a star! |
-| 🔀 **Fork & Learn** | Feel free to fork and use for your own learning |
+| How to Contribute      | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| 🐛 **Report Bugs**     | Found an issue? Open an issue on GitHub               |
+| 💡 **Suggest Topics**  | Have ideas for new projects or concepts? Let me know! |
+| 📖 **Share Resources** | Know great Java learning materials? Share them!       |
+| ⭐ **Star the Repo**   | If you find this helpful, give it a star!             |
+| 🔀 **Fork & Learn**    | Feel free to fork and use for your own learning       |
 
 ---
 
@@ -484,6 +502,7 @@ While this is a personal learning repository, I'd love to hear from you!
 <br>
 
 **💬 Open for:**
+
 - Collaboration on Java projects
 - Code reviews and feedback
 - Learning resources exchange
@@ -500,7 +519,9 @@ While this is a personal learning repository, I'd love to hear from you!
 **If you find this repository helpful, inspiring, or useful:**
 
 ### 🌟 Star this repository
+
 ### 🔀 Fork it for your own learning journey
+
 ### 📢 Share it with others learning Java
 
 <br>
@@ -537,7 +558,8 @@ Feel free to use this code for learning, teaching, or building your own projects
 
 <br>
 
-### *"The only way to learn a new programming language is by writing programs in it."*
+### _"The only way to learn a new programming language is by writing programs in it."_
+
 — **Dennis Ritchie**
 
 <br>
@@ -546,7 +568,7 @@ Feel free to use this code for learning, teaching, or building your own projects
 
 **Made with ☕ and 💻 by [Akash Bisht](https://github.com/akash0-real)**
 
-*Last Updated: December 2025*
+_Last Updated: December 2025_
 
 <br>
 
@@ -555,3 +577,4 @@ Feel free to use this code for learning, teaching, or building your own projects
 [![Powered by Coffee](https://forthebadge.com/images/badges/powered-by-coffee.svg)](https://forthebadge.com)
 
 </div>
+
